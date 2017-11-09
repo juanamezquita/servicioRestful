@@ -5,7 +5,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app = new \Slim\App;
 
 // get sensores
-$app->get('/api/sensores', function(Request $request, Response $response){
+$app->get('/api/sensores', function(Request $request, Response $response){// en esta linea establece la url del servicio restful
 $sql= "SELECT*FROM datos";
 try{
 //get db object
@@ -13,9 +13,9 @@ $db= new db();
 //connect
 $db=$db->connect();
 $stmt= $db->query($sql);
-$estudiantes =  $stmt->fetchAll(PDO::FETCH_OBJ);
+$sensores =  $stmt->fetchAll(PDO::FETCH_OBJ);
 $db=null;
-echo json_encode($estudiantes);
+echo json_encode($sensores);
 }catch(PDOException $e){
 echo '{"error":"text":'.$e->getMessage().'}';
 }
@@ -32,9 +32,9 @@ $db= new db();
 //connect
 $db=$db->connect();
 $stmt= $db->query($sql);
-$estudiante =  $stmt->fetchAll(PDO::FETCH_OBJ);
+$sensores =  $stmt->fetchAll(PDO::FETCH_OBJ);
 $db=null;
-echo json_encode($estudiante);
+echo json_encode($sensores);
 }catch(PDOException $e){
 echo '{"error":"text":'.$e->getMessage().'}';
 }
